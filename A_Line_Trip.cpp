@@ -97,6 +97,7 @@ void solve()
     }
     maxDist = max(maxDist,2*(x-arr[n-1]));
     int min_tank_volume = maxDist;
+    
     cout<<min_tank_volume<<endl;
 }
  
