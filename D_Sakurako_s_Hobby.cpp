@@ -48,16 +48,16 @@ void solve()
     vector<int>ans(n,-1);
     for(int i=0;i<n;i++){
       int j=i+1;
-      int val=(color[i]=='0') ? 1: 0;
-        while(arr[j-1]!=(i+1)){
-          if(ans[j-1]!=-1){
-            ans[i]= ans[j-1];
-            break;
-          }
-          j=arr[j-1];
-          if(color[j-1]=='0') val++;
-        }
-        if(ans[i]==-1) ans[i]=val;
+      if(ans[j-1]!=-1) continue;
+      vector<int> vis;
+      int cnt =(color[i]=='0'?1:0);
+      vis.pb(j);
+      while(arr[j-1]!=(i+1)){
+        vis.pb(arr[j-1]);
+        j = arr[j-1];
+        if(color[j-1]=='0') cnt++;
+      }
+      for(auto &x: vis)ans[x-1]=cnt;
     }
 
     for(auto &x: ans) cout<<x<<" ";
