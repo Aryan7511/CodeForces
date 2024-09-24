@@ -17,26 +17,38 @@ using namespace std;
 #define aryan ios_base::sync_with_stdio(0); cout.tie(0); cin.tie(0);
 #define line cout << endl;
  
+typedef pair<int, int> pi;
+typedef pair<ll, ll> pl;
+typedef vector<int> vi;
+typedef vector<ll> vl;
+typedef vector<pi> vpi;
+typedef vector<pl> vpl;
+typedef vector<vi> vvi;
+typedef vector<vl> vvl;
+typedef map<ll, ll> ml;
+typedef map<string, ll> msl;
+typedef map<ll, string> mls;
+typedef unordered_map<ll, ll> uml;
+typedef unordered_map<string, ll> umsl;
+typedef unordered_map<ll, string> umls;
+typedef set<ll> sl;
+typedef set<pair<ll, ll>> spl;
+ 
+const ll mod = 1e9 + 7;
  
 void solve()
 {
-    ll n,k; cin>>n>>k;
-    vector<ll> arr(n);
-    for(int i=0;i<n;i++) cin>>arr[i];
-    if(n==1){
-      cout<<0<<endl;
-      return;
+    int n; cin>>n;
+    vector<char> vec(n);
+    for(int i=0;i<n;i++) cin>>vec[i];
+    int ans=1,cnt=1,maxi=0;
+    for(int i=1;i<n;i++){
+      if(vec[i]==vec[i-1]){
+        cnt++;
+      }else cnt=1;
+      maxi = max(cnt,maxi);
     }
-    sort(arr.begin(),arr.end());
-    int maxi=0,j=0;
-    for(int i=1;i<=n;i++){
-       ll diff = arr[i]-arr[i-1];
-       if(i==n || diff>k){
-         maxi = max(i-j,maxi);
-         j = i;
-       }
-    }
-    cout<<(n-maxi)<<endl;
+    cout<<ans+maxi<<endl;
 }
  
 int main()
