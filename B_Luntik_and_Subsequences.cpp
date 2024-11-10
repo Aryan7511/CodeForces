@@ -36,34 +36,18 @@ typedef set<pair<ll, ll>> spl;
  
 const ll mod = 1e9 + 7;
 
-int minSteps(string &num, string &last_two){
-  char x = last_two[0];
-  char y = last_two[1];
-  int i = num.size()-1, steps =0;
-  while(i>0 && num[i]!=y) {
-    i--;
-    steps++;
-  }
-  int j = i-1;
-  while(j>=0 && num[j]!=x) {
-    j--;
-    steps++;
-  }
-  if(i==-1 || j==-1) return 1e9;
-  return steps;
-} 
-
+ 
 void solve()
 {
-    ll n; cin>>n;
-    string num = to_string(n);
-    int steps = 1e9;
-    vector<string> arr = {"00","25","50","75"};
-
-    for(auto &last_two : arr){
-      steps = min(steps,minSteps(num,last_two));
+    int n; cin>>n;
+    int ones = 0, zeros = 0;
+    for(int i=0;i<n;i++){
+      int x; cin>>x;
+      if(x==1) ones++;
+      else if(x==0) zeros++;
     }
-    cout<<steps<<endl;
+    ll ans = (1LL<<zeros)*ones;
+    cout<<ans<<endl;
 }
  
 int main()
